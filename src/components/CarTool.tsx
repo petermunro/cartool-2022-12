@@ -1,7 +1,28 @@
 import { useState } from "react";
 import "./CarTool.css";
+import { uniqueRandomInt } from "./randomInt";
+
+let initialCars = [
+  {
+    id: 1,
+    make: "Maserati",
+    model: "Merak",
+    year: 2012,
+    color: "Blue",
+    price: 34000,
+  },
+  {
+    id: 2,
+    make: "Lamborghini",
+    model: "Countache",
+    year: 2017,
+    color: "Red",
+    price: 57000,
+  },
+];
 
 function CarTool() {
+  let [cars, setCars] = useState(initialCars);
   let [carForm, setCarForm] = useState({
     make: "",
     model: "",
@@ -10,25 +31,6 @@ function CarTool() {
     price: 0,
   });
 
-  let cars = [
-    {
-      id: 1,
-      make: "Maserati",
-      model: "Merak",
-      year: 2012,
-      color: "Blue",
-      price: 34000,
-    },
-    {
-      id: 2,
-      make: "Lamborghini",
-      model: "Countache",
-      year: 2017,
-      color: "Red",
-      price: 57000,
-    },
-  ];
-
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     let newCar = {
       ...carForm,
@@ -36,6 +38,20 @@ function CarTool() {
     };
     setCarForm(newCar);
     console.log(newCar);
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    let usedIds = cars.map((car) => car.id);
+    let newId = uniqueRandomInt(0, 1000, usedIds);
+
+    setCars([
+      ...cars,
+      {
+        ...carForm,
+        id: newId,
+      },
+    ]);
+    e.preventDefault();
   }
 
   return (
@@ -67,7 +83,7 @@ function CarTool() {
           ))}
         </tbody>
       </table>
-      <form className="car-form">
+      <form className="car-form" onSubmit={handleSubmit}>
         <ul>
           <li>
             <label htmlFor="make">make:</label>
@@ -120,6 +136,7 @@ function CarTool() {
             />
           </li>
         </ul>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
