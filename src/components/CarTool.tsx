@@ -1,4 +1,23 @@
 function CarTool() {
+  let cars = [
+    {
+      id: 1,
+      make: "Maserati",
+      model: "Merak",
+      year: 2012,
+      color: "Blue",
+      price: 34000,
+    },
+    {
+      id: 2,
+      make: "Lamborghini",
+      model: "Countache",
+      year: 2017,
+      color: "Red",
+      price: 57000,
+    },
+  ];
+
   return (
     <div>
       <header>
@@ -16,22 +35,16 @@ function CarTool() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>1</th>
-            <th>Maserati</th>
-            <th>Merak</th>
-            <th>2012</th>
-            <th>Blue</th>
-            <th>34000</th>
-          </tr>
-          <tr>
-            <th>2</th>
-            <th>Lamborghini</th>
-            <th>Countache</th>
-            <th>2017</th>
-            <th>Red</th>
-            <th>57000</th>
-          </tr>
+          {cars.map((car) => (
+            <tr key={car.id}>
+              <th>{car.id}</th>
+              <th>{car.make}</th>
+              <th>{car.model}</th>
+              <th>{car.year}</th>
+              <th>{car.color}</th>
+              <th>{car.price}</th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
