@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CarTable from "./CarTable";
 import "./CarTool.css";
 import { uniqueRandomInt } from "./randomInt";
 import ToolHeader from "./ToolHeader";
@@ -58,30 +59,7 @@ function CarTool() {
   return (
     <div>
       <ToolHeader title="Car Tool" />
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Color</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cars.map((car) => (
-            <tr key={car.id}>
-              <th>{car.id}</th>
-              <th>{car.make}</th>
-              <th>{car.model}</th>
-              <th>{car.year}</th>
-              <th>{car.color}</th>
-              <th>{car.price}</th>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <CarTable cars={cars} />
       <form className="car-form" onSubmit={handleSubmit}>
         <ul>
           <li>
