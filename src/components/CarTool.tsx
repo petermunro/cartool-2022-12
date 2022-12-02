@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CarTool.css";
 import { uniqueRandomInt } from "./randomInt";
+import ToolHeader from "./ToolHeader";
 
 let initialCars = [
   {
@@ -56,9 +57,7 @@ function CarTool() {
 
   return (
     <div>
-      <header>
-        <h1>Car Tool</h1>
-      </header>
+      <ToolHeader title="Car Tool" />
       <table>
         <thead>
           <tr>
