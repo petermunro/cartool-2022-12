@@ -1,4 +1,5 @@
 import { Car } from "../interfaces/Car";
+import CarViewRow from "./CarViewRow";
 
 function CarTable({ cars }: { cars: Car[] }) {
   return (
@@ -15,14 +16,7 @@ function CarTable({ cars }: { cars: Car[] }) {
       </thead>
       <tbody>
         {cars.map((car) => (
-          <tr key={car.id}>
-            <th>{car.id}</th>
-            <th>{car.make}</th>
-            <th>{car.model}</th>
-            <th>{car.year}</th>
-            <th>{car.color}</th>
-            <th>{car.price}</th>
-          </tr>
+          <CarViewRow car={car} key={car.id} />
         ))}
       </tbody>
     </table>
