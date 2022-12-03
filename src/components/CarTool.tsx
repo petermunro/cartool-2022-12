@@ -2,6 +2,7 @@ import { useState } from "react";
 import CarTable from "./CarTable";
 import "./CarTool.css";
 import { uniqueRandomInt } from "./randomInt";
+import ToolFooter from "./ToolFooter";
 import ToolHeader from "./ToolHeader";
 
 let initialCars = [
@@ -119,6 +120,7 @@ function CarTool() {
         </ul>
         <button type="submit">Save</button>
       </form>
+      <ToolFooter footerText="Copyright 2022. A Cool Company, Inc." />
     </div>
   );
 }
