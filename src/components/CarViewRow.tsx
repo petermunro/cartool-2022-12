@@ -1,6 +1,11 @@
 import { Car } from "../interfaces/Car";
 
-function CarViewRow({ car }: { car: Car }) {
+export interface CarViewRowProps {
+  car: Car;
+  onDelete: (carId: number) => void;
+}
+
+function CarViewRow({ car, onDelete }: CarViewRowProps) {
   return (
     <tr>
       <th>{car.id}</th>
@@ -9,6 +14,9 @@ function CarViewRow({ car }: { car: Car }) {
       <th>{car.year}</th>
       <th>{car.color}</th>
       <th>{car.price}</th>
+      <th>
+        <button onClick={() => onDelete(car.id as number)}>Delete</button>
+      </th>
     </tr>
   );
 }

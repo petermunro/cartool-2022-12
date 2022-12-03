@@ -39,7 +39,6 @@ function CarTool() {
       [e.target.name]: e.target.value,
     };
     setCarForm(newCar);
-    console.log(newCar);
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -56,10 +55,15 @@ function CarTool() {
     e.preventDefault();
   }
 
+  function handleDelete(carId: number) {
+    console.log("Delete:", carId);
+    setCars(cars.filter((car) => car.id !== carId));
+  }
+
   return (
     <div>
       <ToolHeader title="Car Tool" />
-      <CarTable cars={cars} />
+      <CarTable cars={cars} onDelete={handleDelete} />
       <form className="car-form" onSubmit={handleSubmit}>
         <ul>
           <li>

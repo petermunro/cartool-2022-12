@@ -1,7 +1,12 @@
 import { Car } from "../interfaces/Car";
 import CarViewRow from "./CarViewRow";
 
-function CarTable({ cars }: { cars: Car[] }) {
+interface CarTableProps {
+  cars: Car[];
+  onDelete: (carId: number) => void;
+}
+
+function CarTable(props: CarTableProps) {
   return (
     <table>
       <thead>
@@ -12,11 +17,12 @@ function CarTable({ cars }: { cars: Car[] }) {
           <th>Year</th>
           <th>Color</th>
           <th>Price</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {cars.map((car) => (
-          <CarViewRow car={car} key={car.id} />
+        {props.cars.map((car) => (
+          <CarViewRow car={car} key={car.id} onDelete={props.onDelete} />
         ))}
       </tbody>
     </table>
