@@ -31,6 +31,12 @@ function CarTool() {
 
   function handleSave(newCar: Car) {
     setCars([...cars, newCar]);
+    setEditCarId(-1);
+  }
+
+  function replaceCar(newCar: Car) {
+    setCars(cars.map((car) => (car.id === newCar.id ? newCar : car)));
+    setEditCarId(-1);
   }
 
   function handleEdit(carId: number) {
@@ -39,6 +45,7 @@ function CarTool() {
 
   function handleDelete(carId: number) {
     setCars(cars.filter((car) => car.id !== carId));
+    setEditCarId(-1);
   }
 
   return (
@@ -48,6 +55,8 @@ function CarTool() {
         cars={cars}
         editCarId={editCarId}
         onEdit={handleEdit}
+        onSave={replaceCar}
+        onCancel={() => setEditCarId(-1)}
         onDelete={handleDelete}
       />
       <CarForm onSave={handleSave} usedIds={cars.map((c) => c.id as number)} />

@@ -7,14 +7,16 @@ export interface CarFormProps {
   usedIds: number[];
 }
 
+const emptyCarForm = {
+  make: "",
+  model: "",
+  year: 2012,
+  color: "",
+  price: 0,
+};
+
 function CarForm({ onSave, usedIds }: CarFormProps) {
-  let [carForm, setCarForm] = useState({
-    make: "",
-    model: "",
-    year: 2012,
-    color: "",
-    price: 0,
-  });
+  let [carForm, setCarForm] = useState(emptyCarForm);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     let newCar = {
@@ -32,6 +34,7 @@ function CarForm({ onSave, usedIds }: CarFormProps) {
       id: newId,
     };
     onSave(newCar);
+    setCarForm(emptyCarForm);
     e.preventDefault();
   }
 

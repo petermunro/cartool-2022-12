@@ -3,9 +3,11 @@ import { Car } from "../interfaces/Car";
 
 export interface CarEditRowProps {
   car: Car;
+  onSave: (newCar: Car) => void;
+  onCancel: () => void;
 }
 
-function CarEditRow({ car }: CarEditRowProps) {
+function CarEditRow({ car, onSave, onCancel }: CarEditRowProps) {
   let [editForm, setEditForm] = useState(car);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -64,8 +66,8 @@ function CarEditRow({ car }: CarEditRowProps) {
         />
       </td>
       <td>
-        <button>Save</button>
-        <button>Cancel</button>
+        <button onClick={() => onSave(editForm)}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
       </td>
     </tr>
   );
