@@ -27,20 +27,29 @@ let initialCars: Car[] = [
 
 function CarTool() {
   let [cars, setCars] = useState(initialCars);
+  let [editCarId, setEditCarId] = useState(-1);
 
   function handleSave(newCar: Car) {
     setCars([...cars, newCar]);
   }
 
+  function handleEdit(carId: number) {
+    setEditCarId(carId);
+  }
+
   function handleDelete(carId: number) {
-    console.log("Delete:", carId);
     setCars(cars.filter((car) => car.id !== carId));
   }
 
   return (
     <div>
       <ToolHeader title="Car Tool" />
-      <CarTable cars={cars} onDelete={handleDelete} />
+      <CarTable
+        cars={cars}
+        editCarId={editCarId}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
       <CarForm onSave={handleSave} usedIds={cars.map((c) => c.id as number)} />
 
       <ToolFooter footerText="Copyright 2022. A Cool Company, Inc." />
