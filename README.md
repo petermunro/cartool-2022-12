@@ -1,4 +1,25 @@
-# Getting Started with Create React App
+# CarTool
+
+To start this app:
+
+```bash
+npm install
+```
+
+Then in one shell:
+
+```bash
+npm run json-server
+```
+
+And in another:
+
+```bash
+npm start
+```
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
