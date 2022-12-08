@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Car } from "../interfaces/Car";
+import { deleteCar, getAllCars } from "../services/cars";
 import CarForm from "./CarForm";
 import CarTable from "./CarTable";
 import "./CarTool.css";
@@ -13,13 +14,14 @@ function CarTool() {
   let [editCarId, setEditCarId] = useState(-1);
   let [error, setError] = useState("");
 
+  function refreshCars() {
+    return getAllCars().then(setCars);
+  }
+
   useEffect(() => {
-    fetch("http://localhost:3020/cars")
-      .then((result) => result.json())
-      .then(setCars)
-      .catch((err) => {
-        setError("Failed to fetch cars");
-      });
+    refreshCars().catch((err) => {
+      setError("Failed to fetch cars");
+    });
   }, []);
 
   function handleSave(newCar: Car) {
@@ -37,8 +39,7 @@ function CarTool() {
   }
 
   function handleDelete(carId: number) {
-    setCars(cars.filter((car) => car.id !== carId));
-    setEditCarId(-1);
+    deleteCar(carId).then(refreshCars);
   }
 
   return (
