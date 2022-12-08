@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Car } from "../interfaces/Car";
-import { deleteCar, getAllCars } from "../services/cars";
+import { addCar, deleteCar, getAllCars } from "../services/cars";
 import CarForm from "./CarForm";
 import CarTable from "./CarTable";
 import "./CarTool.css";
@@ -25,8 +25,9 @@ function CarTool() {
   }, []);
 
   function handleSave(newCar: Car) {
-    setCars([...cars, newCar]);
-    setEditCarId(-1);
+    addCar(newCar)
+      .then(refreshCars)
+      .then(() => setEditCarId(-1));
   }
 
   function replaceCar(newCar: Car) {

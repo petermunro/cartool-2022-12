@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { uniqueRandomInt } from "./randomInt";
 import { Car } from "../interfaces/Car";
 
 export interface CarFormProps {
@@ -27,13 +26,7 @@ function CarForm({ onSave, usedIds }: CarFormProps) {
   }
 
   function handleSubmit(e: React.FormEvent) {
-    let newId = uniqueRandomInt(0, 1000, usedIds);
-
-    let newCar = {
-      ...carForm,
-      id: newId,
-    };
-    onSave(newCar);
+    onSave({ ...carForm });
     setCarForm(emptyCarForm);
     e.preventDefault();
   }

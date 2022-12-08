@@ -12,3 +12,11 @@ export function deleteCar(carId: number) {
   }).then((response) => response.json());
   // encodeURIComponent is not strictly necessary above but best practice for user-generated data
 }
+
+export function addCar(car: Car) {
+  return fetch(`${SERVER_URL}/cars`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(car),
+  }).then((response) => response.json());
+}
