@@ -20,3 +20,11 @@ export function addCar(car: Car) {
     body: JSON.stringify(car),
   }).then((response) => response.json());
 }
+
+export function updateCar(car: Car) {
+  return fetch(`${SERVER_URL}/cars/${encodeURIComponent(String(car.id))}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(car),
+  }).then((response) => response.json());
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Car } from "../interfaces/Car";
-import { addCar, deleteCar, getAllCars } from "../services/cars";
+import { addCar, deleteCar, getAllCars, updateCar } from "../services/cars";
 import CarForm from "./CarForm";
 import CarTable from "./CarTable";
 import "./CarTool.css";
@@ -31,8 +31,9 @@ function CarTool() {
   }
 
   function replaceCar(newCar: Car) {
-    setCars(cars.map((car) => (car.id === newCar.id ? newCar : car)));
-    setEditCarId(-1);
+    updateCar(newCar)
+      .then(refreshCars)
+      .then(() => setEditCarId(-1));
   }
 
   function handleEdit(carId: number) {
