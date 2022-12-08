@@ -13,7 +13,8 @@ function CarEditRow({ car, onSave, onCancel }: CarEditRowProps) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEditForm({
       ...editForm,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type === "number" ? Number(e.target.value) : e.target.value,
     });
   }
 
@@ -40,7 +41,7 @@ function CarEditRow({ car, onSave, onCancel }: CarEditRowProps) {
       </td>
       <td>
         <input
-          type="text"
+          type="number"
           name="year"
           id="year"
           value={editForm.year}
@@ -58,7 +59,7 @@ function CarEditRow({ car, onSave, onCancel }: CarEditRowProps) {
       </td>
       <td>
         <input
-          type="text"
+          type="number"
           name="price"
           id="price"
           value={editForm.price}

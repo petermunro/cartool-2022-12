@@ -20,7 +20,8 @@ function CarForm({ onSave, usedIds }: CarFormProps) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     let newCar = {
       ...carForm,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type === "number" ? Number(e.target.value) : e.target.value,
     };
     setCarForm(newCar);
   }
@@ -57,7 +58,7 @@ function CarForm({ onSave, usedIds }: CarFormProps) {
         <li>
           <label htmlFor="year">year:</label>
           <input
-            type="text"
+            type="number"
             name="year"
             id="year"
             value={carForm.year}
@@ -77,7 +78,7 @@ function CarForm({ onSave, usedIds }: CarFormProps) {
         <li>
           <label htmlFor="price">price:</label>
           <input
-            type="text"
+            type="number"
             name="price"
             id="price"
             value={carForm.price}
