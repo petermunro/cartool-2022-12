@@ -39,7 +39,9 @@ function CarTool() {
   }
 
   function handleDelete(carId: number) {
-    deleteCar(carId).then(refreshCars);
+    deleteCar(carId)
+      .then(refreshCars)
+      .then(() => setEditCarId(-1));
   }
 
   return (
